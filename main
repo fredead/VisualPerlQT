@@ -1,0 +1,60 @@
+#!/usr/bin/perl -w
+
+# $Id: main,v 1.5 1998/05/18 16:42:30 simon Exp simon $
+# simon Thu Mar 19 17:08:50 GMT 1998
+#
+# Main section for PerlQt Visual Developer 
+# a project for Final year Bsc(Hons) Computer Science
+# brighton University
+
+
+#Places to find certain modules ( properties and widgets )
+use lib ('./widgets','./properties');
+
+# all those modules used
+use Qt;
+use menu;
+use Canvas;
+use parser;
+use file;
+use strict;
+
+# set them up :)
+my $mmenu = new menu;
+#Add a Canvas
+my $canvas = new Canvas();
+my $parser = new parser();
+my $filehandler = new file();
+
+
+$qApp->setMainWidget($mmenu);
+
+#setup signals for changeing stuff
+$filehandler->connect($mmenu,'saveing()','save()');
+$filehandler->connect($mmenu,'loading()','load()');
+$filehandler->connect($mmenu,'saveingas()','saveas()');
+$filehandler->connect($mmenu,'generate()','genfile()');
+$filehandler->connect($mmenu,'clear()','wipeinfo()');
+$parser->connect($filehandler,'saveing()','savecode()');
+$parser->connect($filehandler,'loading()','loadcode()');
+$parser->connect($filehandler,'generate()','generatecode()');
+$parser->connect($filehandler,'clear()','clean()');
+$canvas->connect($parser,'saveing()','writout()');
+$canvas->connect($parser,'loading()','loadin()');
+$canvas->connect($parser,'genslots()','getslots()');
+$canvas->connect($parser,'gogen()','generate()');
+$canvas->connect($parser,'cleanning()','clearout()');
+$canvas->connect($mmenu,'setwidget(string)','set_widgettype(string)');
+#$canvas->connect($filehandler,'clear()','clearout()');
+
+# signals for the parser
+$parser->connect($mmenu,'forkedit()','editcode()');
+
+
+# And lets go
+$mmenu->show();
+$canvas->show();
+exit $qApp->exec();
+	
+
+

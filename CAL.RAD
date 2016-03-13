@@ -1,0 +1,275 @@
+#Prad v0.0003 Y aint that autoted
+# Simon Loader Copyright 1998
+CODE START
+ 
+ 
+ sub init {
+ 	my $self = shift;
+ 	$self->{'screen'} = 0;
+ 	$self->{'func'} = 'plus';
+ 	$self->{'memory'} = 0;
+ }
+ 
+ sub updatescreen {
+     my $self = shift;
+     my $insert = shift;
+     if ( $self->{'screen'} == 0 and $insert ne '' ) {
+          $self->{'screen'} = $insert;
+     } else {
+         $self->{'screen'} = $self->{'screen'} . $insert;
+     }
+     $self->{messagebox}->setText($self->{'screen'});
+ }
+ 
+ 
+ sub but1 {
+     my $self = shift;
+     $self->updatescreen('1');
+ }
+ sub but2 {
+     my $self = shift;
+     $self->updatescreen('2');
+ }
+ sub but3 {
+     my $self = shift;
+     $self->updatescreen('3');
+ }
+ sub but4 {
+     my $self = shift;
+     $self->updatescreen('4');
+ }
+ sub but5 {
+     my $self = shift;
+     $self->updatescreen('5');
+ }
+ sub but6 {
+     my $self = shift;
+     $self->updatescreen('6');
+ }
+ sub but7 {
+     my $self = shift;
+     $self->updatescreen('7');
+ }
+ sub but8 {
+     my $self = shift;
+     $self->updatescreen('8');
+ }
+ sub but9 {
+     my $self = shift;
+     $self->updatescreen('9');
+ }
+ sub but0 {
+     my $self = shift;
+     $self->updatescreen('0');
+ }
+ sub butdot {
+     my $self = shift;
+     $self->updatescreen('.');
+ }
+ sub buteq {
+     my $self = shift;
+     if ( $self->{'func'} eq 'plus' )
+         {
+         $self->{'screen'} = $self->{'memory'} + $self->{'screen'};
+         $self->{'memory'} = 0;
+         $self->updatescreen('');
+         }
+     if ( $self->{'func'} eq 'minus' )
+         {
+         $self->{'screen'} = $self->{'memory'} - $self->{'screen'};
+         $self->{'memory'} = 0;
+         $self->updatescreen('');
+         }
+ }
+ sub butplus {
+     my $self = shift;
+     $self->{'func'} = 'plus';
+     $self->{'memory'} = $self->{'screen'};
+     $self->{'screen'} = 0;
+     $self->updatescreen('');
+ }
+ sub butminus {
+     my $self = shift;
+     $self->{'func'} = 'minus';
+     $self->{'memory'} = $self->{'screen'};
+     $self->{'screen'} = 0;
+     $self->updatescreen('');
+ }
+ 
+ 
+ 
+
+CODE END
+CANVAS START
+setGeometry(244,26,206,187)
+CANVAS END
+pushbutton(25,45,30,30)
+BEGIN
+ 7
+ 2
+ 
+ but7
+ 
+ 
+END
+pushbutton(56,45,30,30)
+BEGIN
+ 8
+ 2
+ 
+ but8
+ 
+ 
+END
+pushbutton(56,76,30,30)
+BEGIN
+ 5
+ 2
+ 
+ but5
+ 
+ 
+END
+pushbutton(87,76,30,30)
+BEGIN
+ 6
+ 2
+ 
+ but6
+ 
+ 
+END
+pushbutton(25,76,30,30)
+BEGIN
+ 4
+ 2
+ 
+ but4
+ 
+ 
+END
+pushbutton(87,45,30,30)
+BEGIN
+ 9
+ 2
+ 
+ but9
+ 
+ 
+END
+pushbutton(87,107,30,30)
+BEGIN
+ 3
+ 2
+ 
+ but3
+ 
+ 
+END
+pushbutton(25,107,30,30)
+BEGIN
+ 1
+ 2
+ 
+ but1
+ 
+ 
+END
+pushbutton(56,107,30,30)
+BEGIN
+ 2
+ 2
+ 
+ but2
+ 
+ 
+END
+pushbutton(25,138,61,30)
+BEGIN
+ 0
+ 2
+ 
+ but0
+ 
+ 
+END
+pushbutton(87,138,30,30)
+BEGIN
+ .
+ 2
+ 
+ butdot
+ 
+ 
+END
+pushbutton(119,107,28,61)
+BEGIN
+ =
+ 2
+ 
+ buteq
+ 
+ 
+END
+pushbutton(118,76,30,30)
+BEGIN
+ +
+ 2
+ 
+ butplus
+ 
+ 
+END
+pushbutton(118,45,30,30)
+BEGIN
+ -
+ 2
+ 
+ butminus
+ 
+ 
+END
+label(25,7,152,31)
+BEGIN
+ 0
+ Right
+ 2
+ messagebox
+ 
+END
+pushbutton(149,45,30,30)
+BEGIN
+ *
+ 2
+ 
+ 
+ 
+ 
+END
+pushbutton(149,76,30,30)
+BEGIN
+ /
+ 2
+ 
+ 
+ 
+ 
+END
+pushbutton(149,107,30,30)
+BEGIN
+ C/CE
+ 2
+ 
+ 
+ 
+ 
+END
+pushbutton(149,138,30,30)
+BEGIN
+ AC
+ 2
+ 
+ 
+ 
+ 
+END

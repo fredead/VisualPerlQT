@@ -1,0 +1,23 @@
+#Prad v0.0003 Y aint that autoted
+# Simon Loader Copyright 1998
+CODE START
+ 
+ 
+ sub helloproc
+ 	{
+ 	print "hello\n";
+ 	}
+
+CODE END
+CANVAS START
+setGeometry(108,119,200,200)
+CANVAS END
+pushbutton(28,27,88,42)
+BEGIN
+ hello
+ 2
+ helloproc
+ This prints hello
+ 
+ 
+END
